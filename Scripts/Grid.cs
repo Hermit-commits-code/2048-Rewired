@@ -16,11 +16,23 @@ public partial class Grid : Node2D
 		sceneTile = ResourceLoader.Load<PackedScene>("res://Scenes/Tile.tscn");
 		// Initialize the grid with a size of 4x4
 		grid = new Tile[4, 4];
+
+		// Populate the grid with starting tiles
+		PopulateStartingTiles();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+	}
+
+	//  utility method
+	// to get the tile at a specific position
+	private Vector2 ArrayToTileCoords(Vector2 arrayCoords)
+	{
+		// Convert the array coordinates to tile coordinates
+		return new Vector2(arrayCoords.X * 115 + 15,
+			arrayCoords.Y * 115 + 15);
 	}
 
 	// Method to create a tile at a specific position
@@ -42,5 +54,18 @@ public partial class Grid : Node2D
 		}
 		// Create the first tile at the random position
 		Tile tile1 = sceneTile.Instantiate<Tile>() as Tile;
+		// Set the position of the first tile
+		tile1.Position = ArrayToTileCoords(tile1coords);
+		AddChild(tile1);
+
+		// Create the second tile at the random position
+		Tile tile2 = sceneTile.Instantiate<Tile>() as Tile;
+		// Set the position of the second tile
+		tile2.Position = ArrayToTileCoords(tile2coords);
+		AddChild(tile2);
+
+		// Store the tiles in the grid array
+		grid[(int)tile1coords.X, (int)tile1coords.Y] = tile1;
+		grid[(int)tile2coords.X, (int)tile2coords.Y] = tile2;
 	}
 }
