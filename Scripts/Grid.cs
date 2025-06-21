@@ -26,6 +26,36 @@ public partial class Grid : Node2D
 	{
 	}
 
+	public override void _Input(InputEvent @event)
+	{
+		// Check if the event is a key press
+		if (@event.IsActionPressed("up"))
+		{
+			MoveTiles("up");
+		}
+		if (@event.IsActionPressed("down"))
+		{
+			MoveTiles("down");
+		}
+		if (@event.IsActionPressed("left"))
+		{
+			MoveTiles("left");
+		}
+		if (@event.IsActionPressed("right"))
+		{
+			MoveTiles("right");
+		}
+	}
+
+	// Skeleton of move tile function
+	private bool MoveTiles(String direction)
+	{
+		GD.Print("MoveTiles() called." + direction);
+		bool movementOccurred = false;
+
+		return movementOccurred;
+	}
+
 	//  utility method
 	// to get the tile at a specific position
 	private Vector2 ArrayToTileCoords(Vector2 arrayCoords)
