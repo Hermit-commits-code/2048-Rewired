@@ -52,7 +52,10 @@ public partial class Grid : Node2D
 	{
 		GD.Print("MoveTiles() called." + direction);
 		bool movementOccurred = false;
+		// Iterate through the grid based on the direction
 
+		bool isHorizontal = direction == "left" || direction == "right";
+		bool isReverse = direction == "up" || direction == "left";
 		return movementOccurred;
 	}
 
