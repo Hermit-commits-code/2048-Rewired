@@ -105,12 +105,16 @@ public partial class Grid : Node2D
 		}
 		// Create the first tile at the random position
 		Tile tile1 = sceneTile.Instantiate<Tile>() as Tile;
+		// Set the value of the first tile to 2
+		tile1.SetValue(2);
 		// Set the position of the first tile
 		tile1.Position = ArrayToTileCoords(tile1coords);
 		AddChild(tile1);
 
 		// Create the second tile at the random position
 		Tile tile2 = sceneTile.Instantiate<Tile>() as Tile;
+		// Set the value of the second tile to 2
+		tile2.SetValue(2);
 		// Set the position of the second tile
 		tile2.Position = ArrayToTileCoords(tile2coords);
 		AddChild(tile2);
