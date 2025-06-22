@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Grid : Node2D
 {
@@ -56,6 +57,23 @@ public partial class Grid : Node2D
 
 		bool isHorizontal = direction == "left" || direction == "right";
 		bool isReverse = direction == "up" || direction == "left";
+		// Iterate through the tiles in the grid
+		for (int i = 0; i < 4; i++)
+		{
+			// Stack of tiles
+			Stack<Tile> stack = new Stack<Tile>();
+			// Iterate through all tiles in the current row or column. And if a tile is found, push it onto the stack
+			for (int j = 0; j < 4; j++)
+			{
+				int x = isHorizontal ? (isReverse ? 3 : j) : i;
+				int y = isHorizontal ? i : (isReverse ? 3 - j : j);
+				if (grid[x, y] != null)
+				{
+					stack.Push(grid[x, y]);
+					grid[x, y] = null; // Clear the tile from the grid
+				}
+			}
+		}
 		return movementOccurred;
 	}
 
